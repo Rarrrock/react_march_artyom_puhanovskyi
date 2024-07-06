@@ -1,12 +1,15 @@
 import React from 'react';
 import './App.css';
+import UsersComponent from "./components/UsersComponent";
 
-const App = () =>  {
+
+const App = () => {
 
   return (
-    <div>
+      <div>
+        <UsersComponent />
 
-    </div>
+      </div>
   );
 }
 
