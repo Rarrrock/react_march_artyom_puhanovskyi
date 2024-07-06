@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import UserComponent from "./components/UserComponent";
 
 
 const App = () => {
@@ -8,7 +7,6 @@ const App = () => {
   return (
       <div>
 
-        <UserComponent id={2}/>
       </div>
   );
 }
