@@ -1,12 +1,34 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import './App.css';
+import A from "./components/A";
 
-const App = () =>  {
+
+const App = () => {
+  console.log('app');
+  const [counter, setCounter] = useState(0)
+
+  const foobar = useCallback(() => {
+    console.log('foobar');
+    //......
+    //......
+    //......
+    //......
+    //......
+    return undefined;
+  }, []);
 
   return (
-    <div>
+      <div>
+        <A foobar={foobar}/>
 
-    </div>
+        <button
+            onClick={() => {
+              setCounter(prevState => prevState + 1);
+            }}
+        >inc
+        </button>
+
+      </div>
   );
 }
 
