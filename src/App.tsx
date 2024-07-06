@@ -1,12 +1,23 @@
 import React from 'react';
 import './App.css';
+import Parent from "./components/Parent";
+import Child from "./components/Child";
+import Child2 from "./components/Child2";
 
-const App = () =>  {
+
+const App = () => {
 
   return (
-    <div>
+      <div>
+        <Parent>
+          <Child/>
+        </Parent>
 
-    </div>
+        <Parent>
+          <Child2/>
+        </Parent>
+
+      </div>
   );
 }
 
