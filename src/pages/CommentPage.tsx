@@ -1,27 +1,24 @@
-import React, {useEffect, useState} from 'react';
-import {useLocation, useParams} from "react-router-dom";
-import {IComment} from "../models/IComment";
+import React, { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { getComment } from '../services/api.services';
 
 const CommentPage = () => {
-    let {id} = useParams();
+    let { id } = useParams();
     let location = useLocation();
-    let state: IComment = location.state;
-    const [comment, setComment] = useState<any>();
+    let state = location.state;
+    const [comment, setComment] = useState(null);
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/comments/' + id)
-            .then(value => value.json())
-            .then(value => {
-                setComment(value);
-            });
-    }, [id]);
+        getComment(state.id).then(response => {
+            setComment(response.data);
+        });
+    }, [id, state.id]);
 
     return (
         <div>
-            CommentPage {state.id} {state.name + ''}
-            <hr/>
-
-            {JSON.stringify(comment)}
+            CommentPage {state.id} {state.name}
+            <hr />
+            {JSON.stringify(comment, null, 2)}
         </div>
     );
 };

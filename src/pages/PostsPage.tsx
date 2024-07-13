@@ -1,24 +1,23 @@
-import React, {useEffect, useState} from 'react';
-import {IPost} from "../models/IPost";
-import {Outlet} from "react-router-dom";
-import PostComponent from "../components/PostComponent";
+import React, { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import PostComponent from '../components/PostComponent';
+import { getPosts } from '../services/api.services';
 
 const PostsPage = () => {
-    const [posts, setPosts] = useState<IPost[]>([]);
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts/')
-        .then(value => value.json())
-        .then(value => {
-            setPosts(value);
+        getPosts().then(response => {
+            setPosts(response.data);
         });
     }, []);
+
     return (
         <div>
-            <hr/>
-            <Outlet/>
-            <hr/>
-            <PostComponent posts={posts}/>
+            <hr />
+            <Outlet />
+            <hr />
+            <PostComponent posts={posts} />
         </div>
     );
 };

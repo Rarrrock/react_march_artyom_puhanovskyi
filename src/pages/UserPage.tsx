@@ -1,27 +1,24 @@
-import React, {useEffect, useState} from 'react';
-import {useLocation, useParams} from "react-router-dom";
-import {IUser} from "../models/IUser";
+import React, { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { getUser } from '../services/api.services';
 
 const UserPage = () => {
-    let {id} = useParams();
+    let { id } = useParams();
     let location = useLocation();
-    let state: IUser = location.state;
-    const [user, setUser] = useState();
+    let state = location.state;
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/users/' + id)
-            .then(value => value.json())
-            .then(value => {
-                setUser(value);
-            });
-    },[id]);
+        getUser(state.id).then(response => {
+            setUser(response.data);
+        });
+    }, [id, state.id]);
 
     return (
         <div>
-            UserPage {state.id} {state.name} {state.username}
-            <hr/>
-
-            {JSON.stringify(user)}
+            UserPage {state.id} {state.name}
+            <hr />
+            {JSON.stringify(user, null, 2)}
         </div>
     );
 };

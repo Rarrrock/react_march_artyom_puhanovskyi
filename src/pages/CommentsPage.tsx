@@ -1,25 +1,23 @@
-import React, {useState, useEffect} from 'react';
-import {IComment} from "../models/IComment";
-import {Outlet} from "react-router-dom";
-import CommentComponent from "../components/CommentComponent";
+import React, { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import CommentComponent from '../components/CommentComponent';
+import { getComments } from '../services/api.services';
 
 const CommentsPage = () => {
-    const [comments, setComments] = useState<IComment[]>([]);
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/comments/')
-            .then(value => value.json())
-            .then(value => {
-                setComments(value);
-            });
+        getComments().then(response => {
+            setComments(response.data);
+        });
     }, []);
 
     return (
         <div>
-            <hr/>
-            <Outlet/>
-            <hr/>
-            <CommentComponent comments={comments}/>
+            <hr />
+            <Outlet />
+            <hr />
+            <CommentComponent comments={comments} />
         </div>
     );
 };
