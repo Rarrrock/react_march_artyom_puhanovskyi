@@ -7,12 +7,11 @@ import { getPosts } from "../services/api.services";
 
 const PostsPage = () => {
     const [searchParams] = useSearchParams();
-    const page = searchParams.get('page') || '1'; // Default to '1' if no page parameter
-
+    const page = searchParams.get('page') ? parseInt(searchParams.get('page')!) : 1;
     const [posts, setPosts] = useState<IPost[]>([]);
 
     useEffect(() => {
-        const skip = (parseInt(page) - 1) * 30; // Correctly calculate skip value
+        const skip = (page - 1) * 30;
 
         getPosts(skip).then(response => {
             setPosts(response.data);
