@@ -2,24 +2,30 @@ import axios from 'axios';
 
 const API_URL = 'https://jsonplaceholder.typicode.com';
 
-export const getUsers = () => {
-    return axios.get(`${API_URL}/users`);
+export const getUsers = (skip = 0) => {
+    return axios.get(`${API_URL}/users`, {
+        params: { _start: skip, _limit: 30 }
+    });
 };
 
 export const getUser = (id: number) => {
     return axios.get(`${API_URL}/users/${id}`);
 };
 
-export const getPosts = () => {
-    return axios.get(`${API_URL}/posts`);
+export const getPosts = (skip = 0) => {
+    return axios.get(`${API_URL}/posts`, {
+        params: { _start: skip, _limit: 30 }
+    });
 };
 
 export const getPost = (id: number) => {
     return axios.get(`${API_URL}/posts/${id}`);
 };
 
-export const getComments = () => {
-    return axios.get(`${API_URL}/comments`);
+export const getComments = (skip = 0) => {
+    return axios.get(`${API_URL}/comments`, {
+        params: { _start: skip, _limit: 30 }
+    });
 };
 
 export const getComment = (id: number) => {

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { IPost } from '../models/IPost';
+import { IPost } from '../../models/IPost';
 
 interface IProps {
     posts: IPost[];

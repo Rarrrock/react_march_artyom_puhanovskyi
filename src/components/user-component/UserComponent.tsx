@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { IUser } from '../models/IUser';
+import { IUser } from '../../models/IUser';
 
 interface IProps {
     users: IUser[];

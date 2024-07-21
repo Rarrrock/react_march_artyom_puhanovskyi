@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Link} from "react-router-dom";
-import {IComment} from "../models/IComment";
+import {IComment} from "../../models/IComment";
 
 interface IProps {
     comments: IComment[];
