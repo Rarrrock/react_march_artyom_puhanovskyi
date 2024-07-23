@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import { getPost } from '../services/api.services';
 
 const PostPage = () => {
@@ -21,6 +21,7 @@ const PostPage = () => {
             PostPage {id}
             <hr />
             {post ? JSON.stringify(post, null, 2) : "Loading..."}
+            <Link to={`/posts/${id}/comments`}>View Comments</Link>
         </div>
     );
 };

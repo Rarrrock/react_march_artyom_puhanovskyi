@@ -4,21 +4,23 @@ import { getComment } from '../services/api.services';
 
 const CommentPage = () => {
     let { id } = useParams();
-    let location = useLocation();
-    let state = location.state;
     const [comment, setComment] = useState(null);
 
     useEffect(() => {
-        getComment(state.id).then(response => {
-            setComment(response.data);
-        });
-    }, [id, state.id]);
+        if (id) {
+            getComment(parseInt(id)).then(response => {
+                setComment(response.data);
+            }).catch(error => {
+                console.error("Error fetching post:", error);
+            });
+        }
+    }, [id]);
 
     return (
         <div>
-            CommentPage {state.id} {state.name}
+            CommentPage {id}
             <hr />
-            {JSON.stringify(comment, null, 2)}
+            {comment ? JSON.stringify(comment, null, 2) : "Loading..."}
         </div>
     );
 };

@@ -25,17 +25,13 @@ let router = createBrowserRouter([
             { index: true, element: <HomePage /> },
             {
                 path: 'users', element: <UsersPage />, children: [
-                    { path: ':id', element: <UserPage /> }
-                ]
-            },
-            {
-                path: 'posts', element: <PostsPage />, children: [
-                    { path: ':id', element: <PostPage /> }
-                ]
-            },
-            {
-                path: 'comments', element: <CommentsPage />, children: [
-                    { path: ':id', element: <CommentPage /> }
+                    { path: ':id', element: <UserPage />, children: [
+                            { path: 'posts', element: <PostsPage />, children: [
+                                    { path: ':id', element: <PostPage />, children: [
+                                            { path: 'comments', element: <CommentsPage /> }
+                                        ]}
+                                ]}
+                        ]}
                 ]
             },
         ]

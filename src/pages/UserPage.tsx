@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getUser } from '../services/api.services';
 
 const UserPage = () => {
     let { id } = useParams();
-    let location = useLocation();
-    let state = location.state;
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        getUser(state.id).then(response => {
-            setUser(response.data);
-        });
-    }, [id, state.id]);
+        if (id) {
+            getUser(parseInt(id)).then(response => {
+                setUser(response.data);
+            }).catch(error => {
+                console.error("Error fetching user:", error);
+            });
+        }
+    }, [id]);
 
     return (
         <div>
-            UserPage {state.id} {state.name}
+            UserPage {id}
             <hr />
-            {JSON.stringify(user, null, 2)}
+            {user ? (
+                <>
+                    {JSON.stringify(user, null, 2)}
+                    <Link to={`/posts?userId=${id}`}>View Posts</Link> {/* Добавлена строка */}
+                </>
+            ) : "Loading..."}
         </div>
     );
 };
