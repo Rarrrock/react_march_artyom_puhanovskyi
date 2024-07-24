@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getPost } from '../services/api.services';
 
 const PostPage = () => {
     let { id } = useParams();
-    const [post, setPost] = useState(null);
+    const [post, setPost] = useState<any>(null);
 
     useEffect(() => {
         if (id) {
@@ -20,7 +20,13 @@ const PostPage = () => {
         <div>
             PostPage {id}
             <hr />
-            {post ? JSON.stringify(post, null, 2) : "Loading..."}
+            {post ? (
+                <div>
+                    {JSON.stringify(post, null, 2)}
+                    <br />
+                    <Link to={`/comments?postId=${post.id}`}>View Comments</Link>
+                </div>
+            ) : "Loading..."}
         </div>
     );
 };

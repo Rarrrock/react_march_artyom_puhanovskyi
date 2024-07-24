@@ -5,7 +5,7 @@ import {IComment} from "../../models/IComment";
 interface IProps {
     comments: IComment[];
 }
-const UserComponent: FC<IProps> = ({comments}) => {
+const CommentComponent: FC<IProps> = ({comments}) => {
     return (
         <div>
             {
@@ -23,4 +23,4 @@ const UserComponent: FC<IProps> = ({comments}) => {
     );
 };
 
-export default UserComponent;
+export default CommentComponent;

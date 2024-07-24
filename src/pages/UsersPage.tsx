@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import {Outlet, useSearchParams} from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import UserComponent from '../components/user-component/UserComponent';
-import {getPosts, getUsers} from '../services/api.services';
+import { getUsers } from '../services/api.services';
 import PaginationComponent from "../components/pagination-component/PaginationComponent";
-import {IUser} from "../models/IUser";
+import { IUser } from "../models/IUser";
 
 const UsersPage = () => {
     const [searchParams] = useSearchParams();
-    const page = searchParams.get('page') || '1'; // Default to '1' if no page parameter
+    const page = searchParams.get('page') ? parseInt(searchParams.get('page')!) : 1;
 
     const [users, setUsers] = useState<IUser[]>([]);
 
     useEffect(() => {
-        const skip = (parseInt(page) - 1) * 30; // Correctly calculate skip value
+        const skip = (page - 1) * 30;
 
-        getPosts(skip).then(response => {
+        getUsers(skip).then(response => { // Изменена строка
             setUsers(response.data);
         }).catch(error => {
-            console.error("Error fetching posts:", error);
+            console.error("Error fetching users:", error); // Изменена строка
         });
     }, [page]);
 
@@ -27,7 +27,7 @@ const UsersPage = () => {
             <Outlet />
             <hr />
             <UserComponent users={users} />
-            <PaginationComponent/>
+            <PaginationComponent />
         </div>
     );
 };
