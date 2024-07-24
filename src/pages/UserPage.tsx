@@ -4,7 +4,7 @@ import { getUser } from '../services/api.services';
 
 const UserPage = () => {
     let { id } = useParams();
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<any>(null);
 
     useEffect(() => {
         if (id) {
@@ -21,10 +21,11 @@ const UserPage = () => {
             UserPage {id}
             <hr />
             {user ? (
-                <>
+                <div>
                     {JSON.stringify(user, null, 2)}
-                    <Link to={`/posts?userId=${id}`}>View Posts</Link> {/* Добавлена строка */}
-                </>
+                    <br />
+                    <Link to={`/posts?userId=${user.id}`}>View Posts</Link>
+                </div>
             ) : "Loading..."}
         </div>
     );

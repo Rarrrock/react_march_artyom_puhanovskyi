@@ -14,10 +14,10 @@ const UsersPage = () => {
     useEffect(() => {
         const skip = (page - 1) * 30;
 
-        getUsers(skip).then(response => { // Изменена строка
+        getUsers(skip).then(response => {
             setUsers(response.data);
         }).catch(error => {
-            console.error("Error fetching users:", error); // Изменена строка
+            console.error("Error fetching users:", error);
         });
     }, [page]);
 

@@ -13,7 +13,6 @@ const PostComponent: FC<IProps> = ({ posts }) => {
                 {posts.map(post => (
                     <li key={post.id}>
                         <Link to={`/posts/${post.id}`} state={post}>{post.id} {post.title}</Link>
-                        <Link to={`/posts/${post.id}/comments`}>View Comments</Link>
                     </li>
                 ))}
             </ul>

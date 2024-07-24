@@ -13,7 +13,7 @@ const UserComponent: FC<IProps> = ({ users }) => {
                 {users.map(user => (
                     <li key={user.id}>
                         <Link to={user.id.toString()} state={user}>
-                            {user.id} {user.name} ({user.username}) {/* Изменена строка */}
+                            {user.id} {user.name} ({user.username}) {/* Добавлена строка */}
                         </Link>
                     </li>
                 ))}
