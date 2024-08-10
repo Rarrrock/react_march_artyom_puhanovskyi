@@ -1,9 +1,10 @@
 import React from 'react';
-import {useAppContext} from "../App";
+import {useStore} from "../store/store";
+
 
 const Decrementor = () => {
 
-    let {dec} = useAppContext();
+    let {dec} = useStore();
 
     return (
         <div>
@@ -11,6 +12,6 @@ const Decrementor = () => {
 
         </div>
     );
-};  
+};
 
 export default Decrementor;

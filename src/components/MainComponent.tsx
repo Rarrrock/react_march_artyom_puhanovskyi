@@ -1,9 +1,11 @@
 import React from 'react';
-import {useAppContext} from "../App";
+import {useStore} from "../store/store";
+
+
 
 const MainComponent = () => {
 
-    let {counter} = useAppContext();
+    let {counter} = useStore();
 
     return (
         <div>

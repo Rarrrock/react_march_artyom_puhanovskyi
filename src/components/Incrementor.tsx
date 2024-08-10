@@ -1,8 +1,9 @@
 import React from 'react';
-import {useAppContext} from "../App";
+import {useStore} from "../store/store";
+
 
 const Incrementor = () => {
-    let {inc} = useAppContext();
+    let {inc} = useStore();
 
     return (
         <div>
