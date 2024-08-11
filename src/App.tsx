@@ -12,8 +12,6 @@ const App = () => {
             <MainComponent/>
             <Incrementor/>
             <Decrementor/>
-
-
         </div>
     );
 }
